@@ -14,10 +14,10 @@ import { useUserContext } from "@/context/AuthContext"
 
 const SignInForm = () => {
   const { toast } = useToast();
-  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
-
-  const { mutateAsync: signInAccount, isPending } = useSignInAccount();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+  // Query
+  const { mutateAsync: signInAccount } = useSignInAccount();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignInValidation>>({
@@ -30,7 +30,6 @@ const SignInForm = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignInValidation>) {
-
     const session = await signInAccount({
       email: values.email,
       password: values.password,
@@ -95,7 +94,7 @@ const SignInForm = () => {
 
           <p className="text-small-regular text-light-2 text-center mt-2">
             Don't have an account?
-            <Link to="/sign-up" className="text-primary-500 text-small-semibold ml-1">Log in</Link>
+            <Link to="/sign-up" className="text-primary-500 text-small-semibold ml-1">Sign Up</Link>
           </p>
         </form>
       </div>
