@@ -29,7 +29,9 @@ const SignUpForm = () => {
     // create a new user
     const newUser = await createUserAccount(values);
 
-    console.log(newUser)
+    if (!newUser) {
+      return;
+    }
   }
   return (
       <Form {...form}>
