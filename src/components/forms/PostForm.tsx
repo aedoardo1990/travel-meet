@@ -9,7 +9,7 @@ import { FileUploader } from "../shared/FileUploader"
 import { PostValidation } from "@/lib/validation"
 import { Models } from 'appwrite'
 import { Textarea } from "@/components/ui/textarea"
-// import { useCreatePost } from "@/lib/react-query/queriesAndMutations"
+import { useCreatePost } from "@/lib/react-query/queriesAndMutations"
 import { useUserContext } from "@/context/AuthContext"
 import { useToast } from "../ui/use-toast"
 

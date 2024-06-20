@@ -52,7 +52,7 @@ export async function saveUserToDB(user: {
     }
 }
 
-export async function signInAccount(user: { email: string; password: string;}) {
+export async function signInAccount(user: { email: string; password: string; }) {
     try {
         const session = await account.createEmailPasswordSession(user.email, user.password);
 
@@ -64,25 +64,25 @@ export async function signInAccount(user: { email: string; password: string;}) {
 
 // async function to retrieve current user
 export async function getCurrentUser() {
-try {
-    const currentAccount = await account.get();
+    try {
+        const currentAccount = await account.get();
 
-    //if there is no account, error will be thrown
-    if(!currentAccount) throw Error;
+        //if there is no account, error will be thrown
+        if (!currentAccount) throw Error;
 
-    const currentUser = await databases.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.userCollectionId,
-        [Query.equal('accountId', currentAccount.$id)]
-    )
+        const currentUser = await databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
+            [Query.equal('accountId', currentAccount.$id)]
+        )
 
-    if (!currentUser) throw Error;
-    // if we don t have the user, error will be displayed
-    //otherwise it will return as below
-    return currentUser.documents[0];
-} catch (error) {
-    console.log(error)
-}
+        if (!currentUser) throw Error;
+        // if we don t have the user, error will be displayed
+        //otherwise it will return as below
+        return currentUser.documents[0];
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
@@ -102,17 +102,17 @@ export async function createPost(post: INewPost) {
         //upload image to storage
         const uploadedFile = await uploadFile(post.file[0]);
 
-        if(!uploadedFile) throw Error;
+        if (!uploadedFile) throw Error;
         //Get file url
         const fileUrl = getFilePreview(uploadedFile.$id);
 
-        if(!fileUrl) {
+        if (!fileUrl) {
             deleteFile(uploadedFile.$id)
             throw Error;
         }
 
         //convert tags to an array
-        const tags = post.tags?.replace(/ /g,'').split(',') || [];
+        const tags = post.tags?.replace(/ /g, '').split(',') || [];
 
         //save post to database
         const newPost = await databases.createDocument(
@@ -125,11 +125,11 @@ export async function createPost(post: INewPost) {
                 imageUrl: fileUrl,
                 imageId: uploadedFile.$id,
                 location: post.location,
-                tags: tags  
+                tags: tags
             }
         )
-        
-        if(!newPost){
+
+        if (!newPost) {
             await deleteFile(uploadedFile.$id)
             throw Error;
         }
@@ -175,5 +175,16 @@ export async function deleteFile(fileId: string) {
     } catch (error) {
         console.log(error)
     }
+}
+
+export async function getRecentPosts() {
+    const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.postCollectionId,
+        [Query.orderDesc('$createdAt'), Query.limit(20)]
+    )
+    if(!posts) throw Error;
+
+    return posts;
 }
 
