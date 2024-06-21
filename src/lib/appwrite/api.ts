@@ -2,6 +2,7 @@ import { ID, ImageGravity, Query } from "appwrite";
 
 import { INewUser, INewPost } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
+import { string } from "zod";
 
 export async function createUserAccount(user: INewUser) {
     try {
@@ -107,7 +108,7 @@ export async function createPost(post: INewPost) {
         const fileUrl = getFilePreview(uploadedFile.$id);
 
         if (!fileUrl) {
-            deleteFile(uploadedFile.$id)
+            await deleteFile(uploadedFile.$id)
             throw Error;
         }
 
@@ -125,7 +126,7 @@ export async function createPost(post: INewPost) {
                 imageUrl: fileUrl,
                 imageId: uploadedFile.$id,
                 location: post.location,
-                tags: tags
+                tags: tags,
             }
         )
 
@@ -133,6 +134,7 @@ export async function createPost(post: INewPost) {
             await deleteFile(uploadedFile.$id)
             throw Error;
         }
+        return newPost;
     } catch (error) {
         console.log(error);
     }
@@ -152,16 +154,18 @@ export async function uploadFile(file: File) {
     }
 }
 
-export async function getFilePreview(fileId: string) {
+export function getFilePreview(fileId: string) {
     try {
         const fileUrl = storage.getFilePreview(
             appwriteConfig.storageId,
             fileId,
             2000,
             2000,
-            "top",
+            "top", //BUG to fix
             100,
         )
+        if (!fileUrl) throw Error;
+
         return fileUrl;
     } catch (error) {
         console.log(error)
