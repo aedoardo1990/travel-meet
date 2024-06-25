@@ -15,9 +15,10 @@ import { useToast } from "../ui/use-toast"
 
 type PostFormProps = {
     post?: Models.Document;
+    action: 'Create' | 'Update';
 }
 
-const PostForm = ({ post }: PostFormProps) => {
+const PostForm = ({ post, action }: PostFormProps) => {
     const { mutateAsync: createPost, isPending: isLoadingCreate } = useCreatePost();
     const { user } = useUserContext();
     const { toast } = useToast();
@@ -27,7 +28,7 @@ const PostForm = ({ post }: PostFormProps) => {
     const form = useForm<z.infer<typeof PostValidation>>({
         resolver: zodResolver(PostValidation),
         defaultValues: {
-            caption: post ? post?.caption: "",
+            caption: post ? post?.caption : "",
             file: [],
             location: post ? post?.location : "",
             tags: post ? post.tags.join(',') : ''
@@ -41,19 +42,19 @@ const PostForm = ({ post }: PostFormProps) => {
             userId: user.id,
         })
 
-        if(!newPost) {
+        if (!newPost) {
             toast({
                 title: 'Please try again'
             })
         }
         navigate('/');
     }
-
+    
     return (
         <Form {...form}>
             <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-9 w-full max-w-5xl">
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="flex flex-col gap-9 w-full max-w-5xl">
                 <FormField
                     control={form.control}
                     name="caption"
@@ -61,9 +62,9 @@ const PostForm = ({ post }: PostFormProps) => {
                         <FormItem>
                             <FormLabel className="shad-form_label">Caption</FormLabel>
                             <FormControl>
-                                <Textarea 
-                                className="shad-textarea custom-scrollbar" 
-                                {...field} 
+                                <Textarea
+                                    className="shad-textarea custom-scrollbar"
+                                    {...field}
                                 />
                             </FormControl>
 
@@ -78,9 +79,9 @@ const PostForm = ({ post }: PostFormProps) => {
                         <FormItem>
                             <FormLabel className="shad-form_label">Add Photos</FormLabel>
                             <FormControl>
-                                <FileUploader 
-                                fieldChange={field.onChange}
-                                mediaUrl={post?.imageUrl}
+                                <FileUploader
+                                    fieldChange={field.onChange}
+                                    mediaUrl={post?.imageUrl}
                                 />
                             </FormControl>
                             <FormMessage className="shad-form_message" />
@@ -94,7 +95,7 @@ const PostForm = ({ post }: PostFormProps) => {
                         <FormItem>
                             <FormLabel className="shad-form_label">Add Location</FormLabel>
                             <FormControl>
-                                <Input type="text" className="shad-input" {...field}/>
+                                <Input type="text" className="shad-input" {...field} />
                             </FormControl>
                             <FormMessage className="shad-form_message" />
                         </FormItem>

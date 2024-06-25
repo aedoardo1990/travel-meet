@@ -11,7 +11,7 @@ export const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
     // empty array to pass multiple files
     const [file, setFile] = useState<File[]>([]);
     // in the fileUrl is of course only the file Url to pass
-    const [fileUrl, setFileUrl] = useState('');
+    const [fileUrl, setFileUrl] = useState(mediaUrl);
 
     const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
         setFile(acceptedFiles);

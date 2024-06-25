@@ -1,6 +1,6 @@
 import { ID, ImageGravity, Query } from "appwrite";
 
-import { INewUser, INewPost } from "@/types";
+import { INewUser, INewPost, IUpdatePost } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
 import { string } from "zod";
 
@@ -187,13 +187,13 @@ export async function getRecentPosts() {
         appwriteConfig.postCollectionId,
         [Query.orderDesc('$createdAt'), Query.limit(20)]
     )
-    if(!posts) throw Error;
+    if (!posts) throw Error;
 
     return posts;
 }
 
 // array to know the IDs of people who liked the post
-export async function likePost(postId: string, likesArray: string[]){
+export async function likePost(postId: string, likesArray: string[]) {
     try {
         const updatedPost = await databases.updateDocument(
             appwriteConfig.databaseId,
@@ -212,7 +212,7 @@ export async function likePost(postId: string, likesArray: string[]){
     }
 }
 
-export async function savePost(postId: string, userId: string){
+export async function savePost(postId: string, userId: string) {
     try {
         const updatedPost = await databases.createDocument(
             appwriteConfig.databaseId,
@@ -232,7 +232,7 @@ export async function savePost(postId: string, userId: string){
     }
 }
 
-export async function deleteSavedPost(savedRecordId: string){
+export async function deleteSavedPost(savedRecordId: string) {
     try {
         const statusCode = await databases.deleteDocument(
             appwriteConfig.databaseId,
@@ -242,8 +242,75 @@ export async function deleteSavedPost(savedRecordId: string){
 
         if (!statusCode) throw Error;
 
-        return { status: 'ok'};
+        return { status: 'ok' };
     } catch (error) {
         console.log(error);
     }
 }
+
+export async function getPostById(postId: string) {
+    try {
+        const post = await databases.getDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            postId
+        )
+
+        return post;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function updatePost(post: IUpdatePost) {
+    const hasFileToUpdate = post.file.length > 0;
+
+    try {
+        //to check if there is already an image
+        let image = {
+            imageUrl: post.imageUrl,
+            imageId: post.imageId,
+        }
+        // we can then figure out if the user has a file to update
+        if (hasFileToUpdate) {
+            // if yes, we upload image to storage
+            const uploadedFile = await uploadFile(post.file[0]);
+            if (!uploadedFile) throw Error;
+
+            //  Get file url
+            const fileUrl = getFilePreview(uploadedFile.$id);
+
+            if (!fileUrl) {
+                await deleteFile(uploadedFile.$id)
+                throw Error;
+            }
+            // we update the image and corresponding file
+            image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id }
+
+        }
+
+        const tags = post.tags?.replace(/ /g, '').split(',') || [];
+
+        const updatedPost = await databases.updateDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            post.postId, //not unique id because the post already exists
+            {
+                caption: post.caption,
+                imageUrl: image.imageUrl,
+                imageId: image.imageId,
+                location: post.location,
+                tags: tags,
+            }
+        )
+
+        if (!updatedPost) {
+            await deleteFile(post.imageId)
+            throw Error;
+        }
+        return updatedPost;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
