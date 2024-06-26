@@ -351,22 +351,6 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
     }
 }
 
-export async function deletePost(postId: string, imageId: string) {
-    if (!postId || !imageId) throw Error;
-
-    try {
-        await databases.deleteDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.postCollectionId,
-            postId
-        )
-
-        return { status: 'ok' };
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 export async function searchPosts(searchTerm: string) {
     try {
         const posts = await databases.listDocuments(
