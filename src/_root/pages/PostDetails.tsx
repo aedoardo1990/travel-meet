@@ -1,7 +1,7 @@
 import Loader from "@/components/shared/Loader";
 import { useGetPostById } from '@/lib/react-query/queriesAndMutations';
 import { useParams, Link } from 'react-router-dom'
-import { formatDateString } from "@/lib/utils";
+import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import PostStats from "@/components/shared/PostStats";
@@ -37,7 +37,7 @@ const PostDetails = () => {
                   </p>
                   <div className='flex-center gap-2 text-light-3'>
                     <p className='subtle-semibold lg:small-regular'>
-                      {formatDateString(post?.$createdAt)} {/*BUG TO FIX*/}
+                      {multiFormatDateString(post?.$createdAt)}
                     </p>
                     -
                     <p className='sublte-sembidold lg:small-regular'>
