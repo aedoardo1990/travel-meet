@@ -10,7 +10,7 @@ type SearchResultsProps = {
 const SearchResults = ({ isSearchFetching, searchedPosts}: SearchResultsProps) => {
   if(isSearchFetching) return <Loader />
 
-  if(searchedPosts && searchedPosts.documents.length > 0) {
+  if(searchedPosts && searchedPosts.documents.length > 0) { //DOUBLE BUG
     return (
       <GridPostList posts={searchedPosts.documents}/>
     )
