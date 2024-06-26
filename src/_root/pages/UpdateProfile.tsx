@@ -16,12 +16,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/shared/Loader";
-
-import { ProfileUploader } from "@/components/shared";
-
-import { ProfileValidation } from "@/lib/validation";
+import ProfileUploader from "@/components/shared/ProfileUploader";
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserById, useUpdateUser } from "@/lib/react-query/queriesAndMutations";
+import { ProfileValidation } from "@/lib/validation"; 
 
 const UpdateProfile = () => {
   const { toast } = useToast();
