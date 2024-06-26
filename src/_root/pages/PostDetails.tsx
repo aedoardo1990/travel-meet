@@ -27,7 +27,7 @@ const PostDetails = () => {
               <Link to={`/profile/${post?.creator.$id}`}
                 className="flex items-center gap-3">
                 <img
-                  src={post?.creator?.imageUrl || '/assets/icons/profile-placeholder.svg'}
+                  src={post?.creator.imageUrl || '/assets/icons/profile-placeholder.svg'}
                   alt='creator'
                   className='rounded-full w-8 h-8 lg:w-12 lg:h-12'
                 />
@@ -37,7 +37,7 @@ const PostDetails = () => {
                   </p>
                   <div className='flex-center gap-2 text-light-3'>
                     <p className='subtle-semibold lg:small-regular'>
-                      {formatDateString(post?.$createdAt)}
+                      {formatDateString(post?.$createdAt)} {/*BUG TO FIX*/}
                     </p>
                     -
                     <p className='sublte-sembidold lg:small-regular'>
