@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
+import SearchResults from '@/components/shared/SearchResults';
+import GridPostList from '@/components/shared/GridPostList';
 
 const Explore = () => {
   const [searchValue, setSearchValue] = useState('');
