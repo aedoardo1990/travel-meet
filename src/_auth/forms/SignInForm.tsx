@@ -92,13 +92,13 @@ const SignInForm = () => {
             ) : "Sign In"}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <p className="text-small-regular text-black text-center mt-2">
             Don't have an account?
-            <Link to="/sign-up" className="text-primary-500 text-small-semibold ml-1">Sign up</Link>
+            <Link to="/sign-up" className="text-sky-400 text-small-semibold ml-1">Sign up</Link>
           </p>
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <p className="text-small-regular text-black text-center mt-2">
             Do you want to explore TravelMeet?
-            <Link to="/explore" className="text-primary-500 text-small-semibold ml-1">Explore</Link>
+            <Link to="/explore" className="text-sky-400 text-small-semibold ml-1">Explore</Link>
           </p>
         </form>
       </div>
