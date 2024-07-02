@@ -15,11 +15,11 @@ const App = () => {
         <Route element={<AuthLayout />}>
           <Route path='/sign-in' element={<SignInForm />} />
           <Route path='/sign-up' element={<SignUpForm />} />
+          <Route path="/explore" element={<Explore />} />
         </Route>
         {/*Private routes */}
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
           <Route path='/saved' element={<Saved/>}/>
           <Route path='/all-users' element={<AllUsers />}/>
           <Route path='/create-post' element={<CreatePost />}/>

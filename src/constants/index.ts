@@ -1,3 +1,4 @@
+// Links Logged In User
 export const sidebarLinks = [
     {
       imgURL: "/assets/icons/home.svg",
@@ -26,6 +27,7 @@ export const sidebarLinks = [
     },
   ];
   
+// Links Logged Out User
   export const bottombarLinks = [
     {
       imgURL: "/assets/icons/home.svg",
@@ -46,5 +48,43 @@ export const sidebarLinks = [
       imgURL: "/assets/icons/gallery-add.svg",
       route: "/create-post",
       label: "Create",
+    },
+  ];
+
+  export const sidebarLinksLogOut = [
+    {
+      imgURL: "/assets/icons/wallpaper.svg",
+      route: "/explore",
+      label: "Explore",
+    },
+    {
+      imgURL: "/assets/icons/bookmark.svg",
+      route: "/sign-in",
+      label: "Sign In",
+    },
+    {
+      imgURL: "/assets/icons/bookmark.svg",
+      route: "/sign-up",
+      label: "Sign Up",
+    },
+
+  ];
+  
+  export const bottombarLinksLogOut = [
+
+    {
+      imgURL: "/assets/icons/wallpaper.svg",
+      route: "/explore",
+      label: "Explore",
+    },
+    {
+      imgURL: "/assets/icons/bookmark.svg",
+      route: "/sign-in",
+      label: "Sign In",
+    },
+    {
+      imgURL: "/assets/icons/bookmark.svg",
+      route: "/sign-up",
+      label: "Sign Up",
     },
   ];
