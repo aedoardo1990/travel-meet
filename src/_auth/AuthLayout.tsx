@@ -1,6 +1,5 @@
 import BottombarLogOut from "@/components/shared/BottombarLogOut";
 import LeftSidebarLogOut from "@/components/shared/LeftSidebarLogOut";
-import TopbarLogOut from "@/components/shared/TobarLogOut";
 import { Outlet, Navigate } from "react-router-dom";
 
 const AuthLayout = () => {
@@ -13,7 +12,6 @@ const AuthLayout = () => {
     ):(
       <>
       <div className='w-full md:flex'>
-      <TopbarLogOut />
       <LeftSidebarLogOut />
       <section className='flex flex-1 h-full'>
         <Outlet />
