@@ -89,12 +89,12 @@ const SignInForm = () => {
               <div className="flex-center gap-2">
                 <Loader /> Loading...
               </div>
-            ) : "Sign In"}
+            ) : "Log in"}
           </Button>
 
           <p className="text-small-regular text-black text-center mt-2">
             Don't have an account?
-            <Link to="/sign-up" className="text-sky-400 text-small-semibold ml-1">Sign up</Link>
+            <Link to="/sign-up" className="text-sky-400 text-small-semibold ml-1">Log in</Link>
           </p>
           <p className="text-small-regular text-black text-center mt-2">
             Do you want to explore TravelMeet?
