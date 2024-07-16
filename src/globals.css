@@ -219,11 +219,11 @@
 
   /* Left sidebar */
   .leftsidebar {
-    @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2;
+    @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] border-r-2 border-gray-300;
   }
 
   .leftsidebar-link {
-    @apply rounded-lg base-medium hover:bg-sky-400 transition;
+    @apply rounded-lg base-medium hover:bg-gray-200 transition;
   }
 
   /* Post Card */
