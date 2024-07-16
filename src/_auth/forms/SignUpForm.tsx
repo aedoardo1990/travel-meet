@@ -65,7 +65,7 @@ const SignUpForm = () => {
       <div className="sm:w-420 flex-center flex-col">
         <img src="assets\images\logo-travelmeet-669640ccbfd6d.webp" alt="logo" />
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12"> Create a new account</h2>
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 text-gray-400"> Create a new account</h2>
         <p className="text-light-3 small-medium md:base-regular">To use TravelMeet please enter your details</p>
 
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
@@ -74,9 +74,8 @@ const SignUpForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input type="text" className="shad-input" {...field} placeholder="Name"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -87,9 +86,8 @@ const SignUpForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input type="text" className="shad-input" {...field} placeholder="Username"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -100,9 +98,8 @@ const SignUpForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" className="shad-input" {...field} />
+                  <Input type="email" className="shad-input" {...field} placeholder="Email"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,9 +110,8 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" className="shad-input" {...field} />
+                  <Input type="password" className="shad-input" {...field} placeholder="Password"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -129,14 +125,16 @@ const SignUpForm = () => {
             ) : "Sign Up"}
           </Button>
 
+          <hr className="mt-5"/>
+
           <p className="text-small-regular text-black text-center mt-2">
             Already have an account?
-            <Link to="/sign-in" className="text-sky-400 text-small-semibold ml-1">Log in</Link>
+            <Link to="/sign-in" className="text-sky-400 font-semibold ml-1">Log in</Link>
           </p>
 
           <p className="text-small-regular text-black text-center mt-2">
             Do you want to explore TravelMeet?
-            <Link to="/explore" className="text-sky-400 text-small-semibold ml-1">Explore</Link>
+            <Link to="/explore" className="text-sky-400 font-semibold ml-1">Explore</Link>
           </p>
         </form>
       </div>
