@@ -75,7 +75,7 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} placeholder="Name"/>
+                  <Input type="text" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -87,7 +87,7 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} placeholder="Username"/>
+                  <Input type="text" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -99,7 +99,7 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="email" className="shad-input" {...field} placeholder="Email"/>
+                  <Input type="email" placeholder="Email" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -111,7 +111,7 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="password" className="shad-input" {...field} placeholder="Password"/>
+                  <Input type="password" placeholder="Password" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
