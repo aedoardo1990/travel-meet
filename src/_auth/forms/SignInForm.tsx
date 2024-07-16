@@ -96,9 +96,11 @@ const SignInForm = () => {
             Don't have an account?
             <Link to="/sign-up" className="text-sky-400 font-semibold ml-1">Sign up</Link>
           </p>
+
+          <p className="font-semibold text-gray-500 text-center mt-1"> OR </p>
+
           <p className="text-small-regular text-black text-center mt-2">
-            Do you want to explore TravelMeet?
-            <Link to="/explore" className="text-sky-400 font-semibold ml-1">Explore</Link>
+            <Link to="/explore" className="text-sky-400 font-semibold ml-1">Explore</Link> TravelMeet <i className="fa-solid fa-earth-americas"></i>
           </p>
         </form>
       </div>

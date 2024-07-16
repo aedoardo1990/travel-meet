@@ -1,4 +1,3 @@
-import BottombarLogOut from "@/components/shared/BottombarLogOut";
 import { Outlet, Navigate } from "react-router-dom";
 
 const AuthLayout = () => {
@@ -10,12 +9,15 @@ const AuthLayout = () => {
       <Navigate to="/" />
     ):(
       <>
-      <div className='w-full md:flex'>
-      <section className='flex flex-1 h-full'>
+
+      <section className='flex flex-1 justify-center items-center flex-col py-10'>
         <Outlet />
       </section>
-      <BottombarLogOut />
-    </div>
+      <img
+            src="/assets/images/log-in-photo-669674a80843f.webp"
+            alt="logo"
+            className="hidden xl:block h-screen w-1/2 object-cover bg-no-repeat"
+          />
       </>
     )}
     </>
