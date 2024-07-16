@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import { useToast } from "@/components/ui/use-toast"
 import { Link, useNavigate } from "react-router-dom"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
@@ -74,6 +74,7 @@ const SignUpForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
+                 <FormLabel className="shad-form_label"></FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} placeholder="Name"/>
                 </FormControl>
@@ -86,6 +87,7 @@ const SignUpForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
+                <FormLabel className="shad-form_label"></FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} placeholder="Username"/>
                 </FormControl>
@@ -99,6 +101,7 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
+                <FormLabel className="shad-form_label"></FormLabel>
                   <Input type="email" className="shad-input" {...field} placeholder="Email"/>
                 </FormControl>
                 <FormMessage />
@@ -111,6 +114,7 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
+                <FormLabel className="shad-form_label"></FormLabel>
                   <Input type="password" className="shad-input" {...field} placeholder="Password"/>
                 </FormControl>
                 <FormMessage />
