@@ -2,7 +2,7 @@ import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useToast } from "@/components/ui/use-toast"
 import { Link, useNavigate } from "react-router-dom"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
@@ -73,9 +73,8 @@ const SignUpForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field}/>
+                  <Input type="text" placeholder="Name" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -86,9 +85,8 @@ const SignUpForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field}/>
+                  <Input type="text" placeholder="Username" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -99,9 +97,8 @@ const SignUpForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" className="shad-input" {...field}/>
+                  <Input type="email" placeholder="Email" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,9 +109,8 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" className="shad-input" {...field}/>
+                  <Input type="password" placeholder="Password" className="shad-input" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
