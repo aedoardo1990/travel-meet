@@ -28,7 +28,7 @@ export const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
     })
 
     return (
-        <div {...getRootProps()} className='flex flex-center flex-col bg-dark-3 rounded-xl cursor-pointer'>
+        <div {...getRootProps()} className='flex flex-center flex-col bg-light-1 border border-gray-200 rounded-xl cursor-pointer'>
             <input {...getInputProps()} className='cursor-pointer' />
             {
                 fileUrl ? (
