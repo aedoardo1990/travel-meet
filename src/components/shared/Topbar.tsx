@@ -16,12 +16,12 @@ const Topbar = () => {
 
     return (
         <section className='topbar'>
-            <div className='flex-between py-4 px-5'>
+            <div className='flex-between py-4 px-5 border-b-2 border-gray-300'>
                 <Link to="/" className='flex gap-3 items-center'>
                     <img
-                        src='/assets/images/logo.svg'
+                        src='/assets/images/logo-travelmeet-669640ccbfd6d.webp'
                         alt='logo'
-                        width={130}
+                        width={160}
                         height={325}
                     />
                 </Link>
