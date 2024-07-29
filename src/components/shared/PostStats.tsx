@@ -61,7 +61,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         <img
           src={`${checkIsLiked(likes, userId)
             ? '/assets/icons/liked.svg'
-            : 'assets/icons/like.svg'
+            : '/assets/icons/like.svg'
           }`}
           alt='like'
           width={20}
