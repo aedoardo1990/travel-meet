@@ -126,10 +126,10 @@ const PostDetails = () => {
                         Are you sure you want to delete this post?
                       </h3>
                       <div className="flex justify-center gap-4">
-                        <Button color="failure" onClick={handleDeletePost}>
+                        <Button className="bg-green-600 hover:bg-green-500" onClick={handleDeletePost}>
                           {"Yes, I'm sure"}
                         </Button>
-                        <Button color="gray" onClick={() => setOpenModal(false)}>
+                        <Button className="bg-red-2 hover:bg-red" onClick={() => setOpenModal(false)}>
                           No, go back
                         </Button>
                       </div>
