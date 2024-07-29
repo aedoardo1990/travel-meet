@@ -105,37 +105,37 @@ const PostDetails = () => {
                 </Link>
 
                 <>
-                <Button
-                  onClick={() => setOpenModal(true)}
-                  variant="ghost"
-                  className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
-                    }`}>
-                  <img
-                    src={"/assets/icons/delete.svg"}
-                    alt="delete"
-                    width={24}
-                    height={24}
-                  />
-                </Button>
-                <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
-                  <Modal.Header />
-                  <Modal.Body>
-                    <div className="text-center">
-                      <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                      <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                        Are you sure you want to delete this post?
-                      </h3>
-                      <div className="flex justify-center gap-4">
-                        <Button className="bg-green-600 hover:bg-green-500" onClick={handleDeletePost}>
-                          {"Yes, I'm sure"}
-                        </Button>
-                        <Button className="bg-red-2 hover:bg-red" onClick={() => setOpenModal(false)}>
-                          No, go back
-                        </Button>
+                  <Button
+                    onClick={() => setOpenModal(true)}
+                    variant="ghost"
+                    className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
+                      }`}>
+                    <img
+                      src={"/assets/icons/delete.svg"}
+                      alt="delete"
+                      width={24}
+                      height={24}
+                    />
+                  </Button>
+                  <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+                    <Modal.Header />
+                    <Modal.Body>
+                      <div className="text-center">
+                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                        <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                          Are you sure you want to delete this post?
+                        </h3>
+                        <div className="flex justify-center gap-4">
+                          <Button className="bg-green-600 hover:bg-green-500" onClick={handleDeletePost}>
+                            {"Yes, I'm sure"}
+                          </Button>
+                          <Button className="bg-red-2 hover:bg-red" onClick={() => setOpenModal(false)}>
+                            No, go back
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </Modal.Body>
-                </Modal>
+                    </Modal.Body>
+                  </Modal>
                 </>
               </div>
             </div>

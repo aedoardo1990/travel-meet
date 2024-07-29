@@ -134,7 +134,7 @@ const SignUpForm = () => {
           <p className="font-semibold text-gray-500 text-center mt-1"> OR </p>
 
           <p className="text-small-regular text-black text-center mt-2">
-            <Link to="/explore" className="text-sky-400 font-semibold ml-1">Explore</Link> TravelMeet <i className="fa-solid fa-earth-americas"></i>
+            <Link to="" className="text-sky-400 font-semibold ml-1">Explore</Link> TravelMeet <i className="fa-solid fa-earth-americas"></i>
           </p>
         </form>
       </div>

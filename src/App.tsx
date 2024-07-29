@@ -15,11 +15,11 @@ const App = () => {
         <Route element={<AuthLayout />}>
           <Route path='/sign-in' element={<SignInForm />} />
           <Route path='/sign-up' element={<SignUpForm />} />
-          <Route path="/explore" element={<Explore />} />
         </Route>
         {/*Private routes */}
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path='/saved' element={<Saved/>}/>
           <Route path='/all-users' element={<AllUsers />}/>
           <Route path='/create-post' element={<CreatePost />}/>
@@ -27,7 +27,7 @@ const App = () => {
           <Route path='/posts/:id' element={<PostDetails />}/>
           <Route path='/profile/:id' element={<Profile />}/>
           <Route path='/update-profile/:id' element={<UpdateProfile />}/>
-          <Route path='/profile/:id/liked-posts' element={<LikedPosts />}/>
+          <Route path='/liked-posts' element={<LikedPosts />}/>
         </Route>
       </Routes>
       <Toaster />
