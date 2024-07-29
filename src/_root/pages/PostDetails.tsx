@@ -1,8 +1,9 @@
 import Loader from "@/components/shared/Loader";
-import { useGetPostById, 
+import {
+  useGetPostById,
   useGetUserPosts,
   useDeletePost
- } from '@/lib/react-query/queriesAndMutations';
+} from '@/lib/react-query/queriesAndMutations';
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
@@ -15,7 +16,7 @@ const PostDetails = () => {
   const { id } = useParams();
   const { user } = useUserContext(); //to know who the user is and what to display
 
-  const { data: post, isLoading } = useGetPostById(id);
+  const { data: post, isLoading } = useGetPostById(id || "");
   const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts(
     post?.creator.$id
   );
@@ -101,9 +102,8 @@ const PostDetails = () => {
                 <Button
                   onClick={handleDeletePost}
                   variant="ghost"
-                  className={`ost_details-delete_btn ${
-                    user.id !== post?.creator.$id && "hidden"
-                  }`}>
+                  className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
+                    }`}>
                   <img
                     src={"/assets/icons/delete.svg"}
                     alt="delete"
