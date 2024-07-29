@@ -10,6 +10,10 @@ import { useUserContext } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import GridPostList from "@/components/shared/GridPostList";
 import PostStats from "@/components/shared/PostStats";
+"use client";
+import { Modal } from "flowbite-react";
+import { useState } from "react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const PostDetails = () => {
   const navigate = useNavigate();
@@ -21,6 +25,7 @@ const PostDetails = () => {
     post?.creator.$id
   );
   const { mutate: deletePost } = useDeletePost();
+  const [openModal, setOpenModal] = useState(false);
 
   const relatedPosts = userPosts?.documents.filter(
     (userPost) => userPost.$id !== id
@@ -99,8 +104,9 @@ const PostDetails = () => {
                   />
                 </Link>
 
+                <>
                 <Button
-                  onClick={handleDeletePost}
+                  onClick={() => setOpenModal(true)}
                   variant="ghost"
                   className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
                     }`}>
@@ -111,6 +117,26 @@ const PostDetails = () => {
                     height={24}
                   />
                 </Button>
+                <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+                  <Modal.Header />
+                  <Modal.Body>
+                    <div className="text-center">
+                      <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                      <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                        Are you sure you want to delete this post?
+                      </h3>
+                      <div className="flex justify-center gap-4">
+                        <Button color="failure" onClick={handleDeletePost}>
+                          {"Yes, I'm sure"}
+                        </Button>
+                        <Button color="gray" onClick={() => setOpenModal(false)}>
+                          No, go back
+                        </Button>
+                      </div>
+                    </div>
+                  </Modal.Body>
+                </Modal>
+                </>
               </div>
             </div>
 
@@ -149,6 +175,7 @@ const PostDetails = () => {
         )}
       </div>
     </div>
+
   );
 };
 
