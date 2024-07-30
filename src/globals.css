@@ -272,8 +272,13 @@
 
   /* Button */
   .shad-button_primary {
-    @apply bg-sky-400 hover:bg-sky-400 text-light-1 flex gap-2 !important;
+    @apply bg-green-500 hover:bg-green-400 text-light-1 flex gap-2 !important;
   }
+
+  .shad-button_secondary {
+    @apply bg-red-2 hover:bg-red text-light-1 flex gap-2 !important;
+  }
+
 
   .shad-button_dark_4 {
     @apply h-12 bg-dark-4 px-5 text-light-1 flex gap-2 !important;
