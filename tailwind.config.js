@@ -39,6 +39,7 @@ module.exports = {
         'light-2': '#EFEFEF',
         'light-3': '#7878A3',
         'light-4': '#5C5C7B',
+        'blue': '#2782E0',
       },
       screens: {
         'xs': '480px',
