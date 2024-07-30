@@ -58,6 +58,7 @@ const Explore = () => {
             width={24}
             height={24}
             alt='search'
+            className='hover:scale-110'
           />
           <Input
             type='text'
