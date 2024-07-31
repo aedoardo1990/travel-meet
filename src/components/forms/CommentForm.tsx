@@ -96,7 +96,7 @@ const CommentForm = ({ comment, action }: CommentFormProps) => {
                         disabled={isLoadingCreate || isLoadingUpdate}
                     >
                         {isLoadingCreate || isLoadingUpdate && 'Loading...'}
-                        {action} Post
+                        {action} Comment
                     </Button>
                 </div>
             </form>
