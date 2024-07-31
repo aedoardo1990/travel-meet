@@ -71,11 +71,11 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
             onClick={handleLikePost}
             className='cursor-pointer'
           />
+          {/*Comment Post*/}
           <img
             src={'/assets/icons/comment.svg'}
           />
         </div>
-        {/*Comment Post*/}
 
         {/*Save Post*/}
         <div className='flex gap-2'>
