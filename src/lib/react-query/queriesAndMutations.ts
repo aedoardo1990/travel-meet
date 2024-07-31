@@ -18,8 +18,15 @@ import {
     searchPosts,
     savePost,
     deleteSavedPost,
+    createComment,
+    getCommentById,
+    updateComment,
+    deleteComment,
+    getInfiniteComments,
+    searchComments,
+    getUserComments
   } from "@/lib/appwrite/api";
-import { INewPost, INewUser, IUpdatePost, IUpdateUser } from '@/types'
+import { INewPost, INewUser, IUpdatePost, IUpdateUser, INewComment, IUpdateComment } from '@/types'
 import { QUERY_KEYS } from './queryKeys';
 
 //to create the user
@@ -232,8 +239,91 @@ export const useSearchPosts = (searchTerm: string) => {
     })
 }
 
+//to create a Comment
+export const useCreateComment = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (comment: INewComment) => createComment(comment),
+        onSuccess: () => {
+            //to allow fetch all new created posts on same page
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.GET_RECENT_COMMENTS]
+            })
+        }
+    })
+}
 
+// to get all recent comments
+export const useGetRecentComments = () => {
+    return useQuery({
+        queryKey: [QUERY_KEYS.GET_RECENT_COMMENTS],
+        // LINE SHOULD BE ADDED? POSSIBLE BUG
+    })
+}
 
+export const useGetCommentById = (commentId: string) => {
+    return useQuery({
+        queryKey: [QUERY_KEYS.GET_COMMENT_BY_ID, commentId],
+        queryFn: () => getCommentById(commentId),
+        enabled: !!commentId
+    })
+}
 
+export const useGetUserComments = (userId?: string) => {
+    return useQuery({
+        queryKey: [QUERY_KEYS.GET_USER_COMMENTS, userId],
+        queryFn: () => getUserComments(userId),
+        enabled: !!userId,
+    });
+};
 
+export const useUpdateComment = () => {
+    const queryClient = useQueryClient();
 
+    return useMutation({
+        mutationFn: (comment: IUpdateComment) => updateComment(comment),
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.GET_COMMENT_BY_ID, data?.$id]
+            })
+        }
+    })
+}
+
+export const useDeleteComment = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: ({ commentId }: { commentId?: string }) =>
+            deleteComment(commentId || ""),
+
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.GET_RECENT_COMMENTS]
+            })
+        }
+    })
+}
+
+export const useGetComments = () => {
+    return useInfiniteQuery({
+        queryKey: [QUERY_KEYS.GET_INFINITE_COMMENTS],
+        queryFn: getInfiniteComments as any,
+        getNextPageParam: (lastPage: any) => {
+            if (lastPage && lastPage.documents.length === 0) {
+                return null;
+            }
+            const lastId = lastPage.documents[lastPage?.documents.length - 1].$id;
+            return lastId;
+        },
+        initialPageParam: null,
+    });
+};
+
+export const useSearchComments = (searchTerm: string) => {
+    return useQuery({
+        queryKey: [QUERY_KEYS.SEARCH_COMMENTS, searchTerm],
+        queryFn: () => searchComments(searchTerm),
+        enabled: !!searchTerm
+    })
+}

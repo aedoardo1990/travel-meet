@@ -55,3 +55,13 @@ export type INavLink = {
     username: string;
     password: string;
   };
+
+  export type INewComment = {
+    userId: string;
+    CommentText: string;
+  };
+
+  export type IUpdateComment = {
+    commentId: string;
+    CommentText: string;
+  };
