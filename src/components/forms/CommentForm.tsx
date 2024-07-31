@@ -74,7 +74,7 @@ const CommentForm = ({ comment, action }: CommentFormProps) => {
                             <FormControl>
                                 <Textarea
                                     className="shad-textarea custom-scrollbar"
-                                    placeholder="Add a description"
+                                    placeholder="Add a comment"
                                     {...field}
                                 />
                             </FormControl>
