@@ -58,10 +58,10 @@ export type INavLink = {
 
   export type INewComment = {
     userId: string;
-    CommentText: string;
+    TextComment: string;
   };
 
   export type IUpdateComment = {
     commentId: string;
-    CommentText: string;
+    TextComment: string;
   };

@@ -26,3 +26,7 @@ export const PostValidation = z.object({
   location: z.string().min(2).max(100),
   tags: z.string(),
 })
+
+export const CommentValidation = z.object({
+  TextComment: z.string().min(1).max(2200),
+})

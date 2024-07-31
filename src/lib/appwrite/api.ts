@@ -509,7 +509,7 @@ export async function createComment(comment: INewComment) {
             ID.unique(),
             {
                 creator: comment.userId,
-                CommentText: comment.CommentText,
+                TextComment: comment.TextComment,
             }
         )
 
@@ -548,7 +548,7 @@ export async function updateComment(comment: IUpdateComment) {
             appwriteConfig.commentsCollectionId,
             comment.commentId, //not unique id because the post already exists
             {
-                CommentText: comment.CommentText,
+                TextComment: comment.TextComment,
             }
         )
 
